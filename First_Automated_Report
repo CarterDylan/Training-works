@@ -1,0 +1,48 @@
+import pyodbc 
+import win32com.client
+import time
+from datetime import datetime
+
+# Sets up our datestring for use in our email
+datestring = datetime.strftime(datetime.now(), ' %d-%m-%y')
+
+#Establishes our SQL connection
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server= XX;' #Change Server Name Here
+                      'Database= XX' #Change database Here
+                      'Trusted_Connection= yes;') # Set this to yes so it uses your windows authentication, rather than having passwords stored in text
+
+# Uses a stored procedure in SQL
+# This uses our connection above and runs the SQL
+cursor = conn.cursor()
+cursor.execute(
+        '''
+EXECUTE [Databasename].[dbo].[StoreProcedured_Name]
+        '''
+           )
+conn.commit()           
+cursor.close()
+conn.close()
+
+# Starts an instance of Excel.
+xlapp = win32com.client.DispatchEx("Excel.Application")
+# Open the workbook in said instance of Excel, refreshes the connections, sleeps to give to time to refresh then saves.
+wb = xlapp.workbooks.open('File Path')
+# xlapp.Visible = True - Optional, e.g. if you want to debug / view the excel refreshing, leave commented out if you want it in the background.
+wb.RefreshAll()
+time.sleep(XX) # Sets sleep time to give report time to refresh
+wb.SaveAs('Filepath'+datestring+'.file extension')
+xlapp.Quit() # Quits Excel
+
+# We then establish a connection with our email client (note that this uses local outlook, so if running on server make sure can access your email client)
+outlook = win32com.client.Dispatch('outlook.application')
+mail = outlook.CreateItem(0)
+mail.To = 'recipient'
+mail.Subject = ('Report -' + datestring)
+mail.Body = 'Body of email here'
+# To attach a file to the email (optional):
+attachment  = ''Filepath'+datestring+'.file extension''
+mail.Attachments.Add(attachment)
+#Sends the email
+mail.Send()
+outlook.Quit() - #Quits the outlook instance
