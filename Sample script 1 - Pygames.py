@@ -1,25 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan  3 12:55:59 2018
-
-@author: dcarter
-"""
-
-# Calculate Miles Per Gallon
-#requires user input for how many gallons used and miles driven
-print("This program calculates mpg.")
-miles_driven = float(input("Enter miles driven:"))
-gallons_used = float(input("Enter gallons used:"))
-mpg = miles_driven / gallons_used
-print("Miles per gallon:", mpg)
-
-
-#This calculates the area of a trapezoid, based on the bottom and top bases and height
-height = float(input("Enter the height of the trapezoid: "))
-bottom_length = float(input("Enter the Length of the bottom base: "))
-top_length = float(input("Enter the Length of the top base: "))
-area = (0.5 * (bottom_length + top_length)) * height
-print (area)
 
 #creates a pop up box asking for yes or no, which can be used by the user.
 from tkinter import Tk, Label, Button, Radiobutton, IntVar
