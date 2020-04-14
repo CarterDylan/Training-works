@@ -6,5 +6,7 @@ Your welcome to take ideas/code if you find anything useful.
 If just browsing and you have suggestions on what could be improved then please let me know
 
 # List of projects:
-
-1. Temperature convertor, more information can be found in the Wiki or commit information associated with it
+1. Calculates Miles Per Gallon - requires user input
+2. Area of a trinangle calculator - Requires user input
+3. Temperature convertor, makes use of tkinter to create a popup - Requires user input
+4. First piece of workload automated, make uses of pyodbc, win32 and time.
