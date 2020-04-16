@@ -8,5 +8,6 @@ If just browsing and you have suggestions on what could be improved then please 
 # List of projects:
 1. Calculates Miles Per Gallon - requires user input
 2. Area of a trinangle calculator - Requires user input
+3. Create a dictionary of employees and loop through the dictionary, creating sub dictionaries based on employee type/location etc
 3. Temperature convertor, makes use of tkinter to create a popup - Requires user input
 4. First piece of workload automated, make uses of pyodbc, win32 and time.
