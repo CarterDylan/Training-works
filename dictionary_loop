@@ -1,0 +1,17 @@
+my_dict = {
+"Dave": ("Analyst", "Insight", "Building-A"),
+"John": ("Developer", "Insight", "Building-D")
+}
+insight = {}
+analyst = {}
+
+for key, value in my_dict.items():
+    if "Insight" in value:
+        insight[key] = value 
+        
+for key, value in my_dict.items():
+    if "Analyst" in value:
+        analyst[key] = value         
+
+print(insight)
+print(analyst)
