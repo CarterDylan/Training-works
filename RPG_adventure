@@ -1,0 +1,209 @@
+from tkinter import *
+from tkinter import simpledialog
+import random
+import sys
+
+hero_name = "Duke Silver"
+hero_age = 29
+hero_health = random.randrange(10,60)
+hero_magic = random.randrange(10,60)
+
+def class_choice(prompt, options):
+    root = Tk()
+    if prompt:
+        Label(root, text=prompt).pack()
+    v = IntVar()
+    for i, option in enumerate(options):
+        Radiobutton(root, text=option, variable=v, value=i).pack(anchor="w")
+    Button(text = "Submit", command=root.destroy).pack()
+    root.mainloop()
+    if v.get() == 0: return None
+    return options[v.get()]
+
+hero_class = class_choice(
+    "",
+    [
+        "Choose your Class",
+        "Warrior",
+        "Hunter",
+        "Thief",
+        "Cleric",
+        "Druid"
+    ]
+)
+
+
+class class_specialisations():
+    def __init__ (self, starting_health, starting_magic, weapon_1, weapon_2, spell_1, spell_2, spell_3):
+        self.starting_health = starting_health
+        self.starting_magic = starting_magic
+        self.weapon_1 = weapon_1
+        self.weapon_2 = weapon_2
+        self.spell_1 = spell_1
+        self.spell_2 = spell_2
+        self.spell_3 = spell_3
+    
+if hero_class == "Warrior":
+    class_specialisations(50, 10, "Small Sword", "Wooden Shield", "Slash","Block","Shield Slam") 
+elif hero_class == "Hunter":
+    class_specialisations(40, 10, "Long Bow",{},"Quick Shot" , "Hunters mark", "Summon Companion")
+elif hero_class == "Thief":
+    class_specialisations(30, 20, "Dirge", "Dirge", "Kidney Shot", "Shiv", "Ambush")
+elif hero_class == "Cleric":
+    class_specialisations(20, 30, "Holy Book", "Dagger", "Smite", "Heal", "Shield")
+elif hero_class == "Druid":
+    class_specialisations(30, 20, "Staff",{} , "Entangle", "Transform", "Cure Wounds")
+        
+
+
+class LivingThing():
+    def __init__(self, name, age, specialisation, health, magicPoints, inventory):
+        self.name = name
+        self.age = age
+        self.specialisation = specialisation
+        self.health = health
+        self.magicPoints = magicPoints
+        self.inventory = inventory
+
+# Create the LivingThing object for the hero.
+hero = LivingThing(hero_name, hero_age, hero_class, hero_health, hero_magic, {})
+monsters = []
+monsters.append(LivingThing('Goblin', 18, "Goblin",20, 0, {'gold': 12, 'dagger': 1}))
+monsters.append(LivingThing('Dragon',3000,"Dragon", 300, 200, {'gold': 890, 'magic amulet': 1}))
+
+
+print('you are %s a %s that has been tasked with destroying the evil monsters in turnbula.' % (hero.name, hero.specialisation))
+print('while out in the wild, looking for your first kill you stumble upon a %s.' % (monsters[0].name))
+print("you have %s health whilst the %s has %s health" % (hero.health,monsters[0].name, monsters[0].health))
+
+#Fight scene
+interaction_choice = class_choice(
+    "",
+    [
+     "What do you do ?",
+     "Attack",
+     "Flee",
+     "Communicate"
+     ]
+    )
+
+rand_roll = random.randrange(0,10)  
+choice = interaction_choice
+
+def roll(number):
+        if number < 6:
+            success = "No"
+            return success
+        elif number > 5:
+            success = "Yes"
+            return success
+        
+success = roll(rand_roll)
+
+
+if choice == "Attack":
+    if success == "Yes":
+       print("you killed the goblin, congratulations")
+    if success == "No":
+        print("the goblin killed you, Game Over")  
+if success == "Yes" and choice == "Communicate":
+       print("you walk over to the goblin and sit down and drink with him, you now have a new best friend") 
+if success == "Yes" and choice == "Flee":
+       print("You manage to flee the the goblin and make it back to town, you hang up your equipment and never adventure again")         
+if success == "No" and choice == "Flee":
+       print("You try to flee, the goblin but he catches up with you and eats you, you are now dead ")
+if success == "No" and choice == "Communicate":
+       print("you try to communicate witht he goblin, but he doesnt understand you he feels threated and kills you ?")   
+  
+success == "Yes"
+
+     
+"""      
+if success == "No" and choice == "Flee":
+       print("You try to flee, the goblin but he catches up with you, what you do try now ? ")
+       interaction_choice_flee = class_choice(
+           "what do you want to do ?",
+           [
+               "Attack",
+               "Communicate"
+               ])
+       
+if success == "No" and choice == "Communicate":
+       print("you try to communicate witht he goblin, but he doesnt understand, what you do try now ?")
+       interaction_choice_flee = "None"
+       interaction_choice_communicate = class_choice(
+           "what do you want to do ?",
+           [
+               "Attack",
+               "Flee"
+               ])  
+       
+#second attempt it slected flee and failed
+rand_roll_second  = random.randrange(0,10)      
+success_second = roll(rand_roll_second)
+second_choice = interaction_choice_flee 
+
+if second_choice == "None":
+    sys.exit()
+if success_second == "Yes" and second_choice == "Attack":
+       print("you killed the goblin, congratulations") 
+if success_second == "Yes" and second_choice == "Communicate":
+       print("you walk over to the goblin and sit down and drink with him, you now have a new best friend")    
+if success_second == "No" and second_choice == "Attack":
+       print("the goblin killed you, Game Over")
+if success == "No" and second_choice == "Communicate":
+       print("you try to communicate witht he goblin, but he doesnt understand, what you do try now ?")  
+       interaction_choice_flee_communicate = class_choice(
+           "what do you want to do ?",
+           [
+               "Attack",
+               ])      
+#second attempt it slected flee and communicate failed
+
+rand_roll_third  = random.randrange(0,10)      
+success_third = roll(rand_roll_third)
+third_choice = interaction_choice_flee_communicate       
+  
+if success_third == "Yes" and third_choice == "Attack":
+       print("you killed the goblin, congratulations")      
+if success_third == "No" and third_choice == "Attack":
+       print("the goblin killed you, Game Over")       
+
+# second attempt communicate    
+        
+if success == "No" and choice == "Communicate":
+       print("you try to communicate witht he goblin, but he doesnt understand, what you do try now ?")  
+       interaction_choice_communicate = class_choice(
+           "what do you want to do ?",
+           [
+               "Attack",
+               "Flee"
+               ])     
+                  
+rand_roll_fourth  = random.randrange(0,10)      
+success_fourth = roll(rand_roll_fourth)
+forth_choice = interaction_choice_communicate
+
+if success_fourth == "Yes" and forth_choice == "Attack":
+       print("you killed the goblin, congratulations") 
+if success_fourth == "Yes" and forth_choice == "Flee":
+       print("You manage to flee the the goblin and make it back to town, you hang up your equipment and never adventure again") 
+if success_fourth == "No" and forth_choice == "Attack":
+       print("the goblin killed you, Game Over")
+if success_fourth == "No" and forth_choice == "Flee":
+       print("You try to flee, the goblin but he catches up with you, what you do try now ? ") 
+       interaction_choice_communicate_flee = class_choice(
+           "what do you want to do ?",
+           [
+               "Attack",
+               ])      
+#second attempt it slected flee and communicate failed
+rand_roll_fifth  = random.randrange(0,10)      
+success_fifth = roll(rand_roll_fifth)
+fifth_choice = interaction_choice_communicate_flee      
+  
+if success_fifth == "Yes" and fifth_choice == "Attack":
+       print("you killed the goblin, congratulations")      
+if success_fifth == "No" and fifth_choice == "Attack":
+       print("the goblin killed you, Game Over")  
+  """ 
