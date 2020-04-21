@@ -11,3 +11,4 @@ If just browsing and you have suggestions on what could be improved then please 
 3. Create a dictionary of employees and loop through the dictionary, creating sub dictionaries based on employee type/location etc
 3. Temperature convertor, makes use of tkinter to create a popup - Requires user input
 4. First piece of workload automated, make uses of pyodbc, win32 and time.
+5. Text based RPG adventure game (work in progress will be adding to it and building as i go along)
