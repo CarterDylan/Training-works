@@ -1,0 +1,36 @@
+# Word Comparison
+
+def istrcmp(word1, word2):
+    return word1.upper() == word2.upper()
+
+python = istrcmp("python", "Python")
+latex = istrcmp("LaTeX", "Latex")
+a = istrcmp("A", "b")
+
+print(python)
+print(latex)
+print(a)
+
+# Takes numbers from a string and then factors the remaining numbers together
+
+import math
+
+my_list = [10, 20, 1, "John", "Jane", "Doe"] 
+
+def factorial(lis):
+        return math.factorial(sum(lis))
+    
+def solve(lis):                                        
+    for x in lis:
+        try:
+            yield int(x)
+        except ValueError:    
+            pass
+
+    
+solved_list = list(solve(my_list))
+
+factorialy = factorial(solved_list)
+
+print(solved_list)
+print(factorialy)
