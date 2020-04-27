@@ -13,3 +13,4 @@ If just browsing and you have suggestions on what could be improved then please 
 4. First piece of workload automated, make uses of pyodbc, win32 and time.
 5. List of random functions put together while learning Python, take a look through and let me know.
 6. Text based RPG adventure game (work in progress will be adding to it and building as i go along)
+7. Discount calculator
