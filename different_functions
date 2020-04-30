@@ -1,3 +1,4 @@
+###############################################################
 # Word Comparison
 
 def istrcmp(word1, word2):
@@ -11,15 +12,15 @@ print(python)
 print(latex)
 print(a)
 
+################################################################
 # Takes numbers from a string and then factors the remaining numbers together
-
 import math
 
 my_list = [10, 20, 1, "John", "Jane", "Doe"] 
 
 def factorial(lis):
         return math.factorial(sum(lis))
-    
+
 def solve(lis):                                        
     for x in lis:
         try:
@@ -29,8 +30,54 @@ def solve(lis):
 
     
 solved_list = list(solve(my_list))
-
 factorialy = factorial(solved_list)
 
 print(solved_list)
 print(factorialy)
+
+# If you prefer to use your own defined function instead of the math one here is a factorial function
+'''
+ def factorial(n):
+    if n == 1:
+        return 1
+    elif n <= 0:
+        return -1
+    else:
+        return n * factorial(n-1)
+ '''
+
+###############################################################
+#fibonacci calculator (using a for loop).
+fib_find = 7
+def fib(n):
+    fib = range(n)
+    first_fib = 0
+    second_fib = 1
+    if n <= 0:
+        return first_fib
+    elif n <= 1:
+        return second_fib
+    else:
+      for fib in range(2,n):
+          next = first_fib + second_fib
+          first_fib = second_fib
+          second_fib = next
+    return first_fib + second_fib
+            
+        
+    
+fib_found = fib(fib_find)
+print(fib_found)
+
+##################################################################
+# checks if any of the numbers in a list add up to 0
+def check_sum(num_list):
+    for first_num in range(len(num_list)):
+        for second_num in range((first_num + 1), len(num_list)):
+            if num_list[first_num] + num_list[second_num] == 0:
+                return True
+    return False
+
+                
+output = check_sum(input)
+print(output)
