@@ -1,22 +1,22 @@
-display = "Enter price of item"
-print(display)
-price = float(input())
-
+price = float(input("Enter price of item: "))
 discounts = [0.3, 0.2, 0.1, 0.05] #change discounts to what you need
 
 #change list items to corresponding list values
 def discount(price):
     if price >= 300:
-        return price-(price * discounts[0]) 
+        return round(price-(price * discounts[0]),2) 
     elif price >= 200 and price <= 299:  
-        return price-(price * discounts[1]) 
+        return round(price-(price * discounts[1]),2) 
     elif price >= 100 and price <= 199:
-        return price-(price * discounts[2])
+        return round(price-(price * discounts[2]),2)
     elif price >= 1 and price <= 99:
-        return price-(price * discounts[3])  
+        return round(price-(price * discounts[3]),2)  
     else:
         return price
     
 new_price = discount(price)
-customer_output = "Old price was "+"£"+str(price)+" , New price is "+"£"+str(new_price)+", You saved "+"£"+str(price-new_price)
+
+discount = str(round((price-new_price),2))
+customer_output = "Old price was "+"£"+str(price)+" , New price is "+"£"+str(new_price)+", You saved "+"£"+ discount
+
 print(customer_output)
