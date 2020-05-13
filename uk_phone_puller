@@ -1,0 +1,23 @@
+import re
+
+message = "" #Enter the string your trying to pull the number from here
+
+#https://pythex.org/ - use this to check your regex and adjust as need be
+international = re.compile(r'([^+]\d{11})')
+internationalCheck = international.findall(message)
+print(internationalCheck)
+
+
+def PhoneChecker(internationalCheck):
+    number = []
+    for i in internationalCheck:
+        if i.startswith("44") == True:
+            internationalNumber = i.replace("44","0")
+            number.append(internationalNumber)
+        else:
+            nationalNumber = i.strip()
+            number.append(nationalNumber)            
+    return number
+
+number = PhoneChecker(internationalCheck)
+print(number)
