@@ -16,3 +16,4 @@ If just browsing and you have suggestions on what could be improved then please 
 7. Discount calculator - Calculates discounts based on various inputs
 8. Guessing game - a small guessing game based on 1-20m, gives you 6 chances to get it correct.
 9. UK phone number pull - Pulls all available from numbers from a string and converts into standard UK format (07*********) instead of international dialling.
+10. Excel data extraction - Loops through all the values in an excel and pulls out the relevant figures into a dictionary.
