@@ -1,0 +1,29 @@
+    #import the modules
+    import openpyxl
+     
+    #finding the excel and getting the sheets
+    wb = openpyxl.load_workbook("enter file path here")
+     
+    #gets the sheet names, the code used in the book and video is being decpreciated so better to stay up to date
+    sheets = wb.sheetnames
+     
+    #gets us the sheet we want in this case sheet 1 and the max row
+    ws = wb[sheets[0]]
+    maxRange = ws.max_row + 1
+     
+    #creating an empty dictionary to store our data in and a list that we are going to loop through for all values that appear in our excel
+     
+    fruitdic = {}
+    fruitlist = []
+     
+    for i in range(1, maxRange):
+        fruitlist.append(ws.cell(row = i, column = 2).value)
+        for x in set(fruitlist):
+                if ws.cell(row = i, column = 2).value == x:
+                    fruitdic.setdefault(x, [])
+                    fruitdic[x].append(ws.cell(row = i, column = 3).value)
+                    #fruitdic[x].append(i) - in case you want the row numbers and not the amounts. 
+     
+     
+    print(fruitdic)
+    #print(sum(fruitdic[fruitlist[0]]))
